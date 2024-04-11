@@ -7,16 +7,33 @@ from pathlib import Path
 from docx import Document
 from g4f.client import Client  # type: ignore
 import math
+from PIL import Image, ImageDraw, ImageTk
+import requests
+import tkinter as tk
+from tkinter import messagebox
+from urllib.parse import unquote
 
-def is_supported_image(file_path):
-    supported_formats = [".jpg", ".jpeg", ".png", ".gif"]
-    return any(file_path.lower().endswith(fmt) for fmt in supported_formats)
 
-def find_cover_picture(directory):
-    for filename in os.listdir(directory):
-        if not filename.endswith(".json"):
-            return f"{filename}"
-    return None
+def draw_english_flag(canvas):
+    # Draw white background with thin black border
+    canvas.create_rectangle(0, 0, 24, 24, fill="white", outline="black")
+
+    # Draw red cross with thinner lines and thin black border
+    canvas.create_rectangle(8, 0, 16, 24, fill="red", outline="black")
+    canvas.create_rectangle(0, 8, 24, 16, fill="red", outline="black")
+
+def draw_flag_vertical(canvas, x, y, colors):
+    stripe_width = 24 // len(colors)
+    for i, color in enumerate(colors):
+        # Draw colored stripe with thin black border
+        canvas.create_rectangle(x + i * stripe_width, y, x + (i + 1) * stripe_width, y + 24, fill=color, outline="black")
+
+def draw_flag_horizontal(canvas, x, y, colors):
+    stripe_height = 24 // len(colors)
+    for i, color in enumerate(colors):
+        # Draw colored stripe with thin black border
+        canvas.create_rectangle(x, y + i * stripe_height, x + 24, y + (i + 1) * stripe_height, fill=color, outline="black")
+
 
 def sanitize_filename(filename):
     valid_chars = '-.() abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -42,100 +59,90 @@ def askAI(message):
     )
     return response.choices[0].message.content
 
-def checkChapterAmount(experience):
-    if experience == "Elementaryschool":
+def checkChapterAmount(experience):  
+    if experience == "Elementaryschool (grade 1-4)":
         return 2
-    if experience == "Middleschool":
+    if experience == "Middleschool(grade 5-8)":
         return 3
-    if experience == "Highschool":
+    if experience == "Highschool(grade 9-12)":
         return 5
     if experience == "University":
         return 7
 
-def getBookOutline(topic, experience):
-    prompt = ("You are a teacher and you are writing a book for your pupils." +
-              "The only response you shall give me is a outline in Chapters and subchapters" +
-              "from the book in json fromat. Please make sure to make the complexity and length adequate for the audience. i.e the younger the audience the simpler and shorter" +
+def getBookOutline(topic, experience,language):
+    chapterAmount = checkChapterAmount(experience)
+    prompt = (f"You are a teacher and you are writing a book for your students of {experience} with maximum amount  of {chapterAmount} chapters" +
+              "The only response you shall give me is a outline" +
+              f"in json format." +
               "it shall only consist of the json part, make it json and not a string!" +
-              "the format should be BOOKTITLE -> CHAPTERS -> CHAPTERTITLE -> SUBCHAPTERS 1.1, 1.2 etc" +
-              "(they must not have a key for number but must be in all caps)  ." +
+              "the json keys should be in this exact format: BOOKTITLE -> CHAPTERS -> CHAPTERTITLE -> SUBCHAPTERS 1.1, 1.2 etc" +
+              "(keys must be in all caps)  ." + 
               "The book is")
     
-    chapterAmount = checkChapterAmount(experience)
-    subchapterAmount = math.ceil(chapterAmount/2)
+    
+    
     print(experience)
     print(str(chapterAmount) + " Chapters")
-    print(str(subchapterAmount) + " Subchapters")
-    bookOutline = askAI(prompt + f" about {topic} for {experience} with maximum amount  of {chapterAmount} of chapters and {subchapterAmount} of subchapters.")
+    
+    bookOutline = askAI(prompt + f" about {topic}. remember to write it in the {language} language and make sure its grammatically correct!")
     if "json" in bookOutline[:7]:
         bookOutline = bookOutline[7:-3]
     with open("util/bookOutline.json", "w", encoding="utf-8") as json_file:
        json_file.write(bookOutline)
 
-def create_subchapter(doc, subchapter, experience):
-    content = askAI(f"Write the content for the subchapter: {subchapter} with appropriate language/complexity for {experience}. And also make sure only to include true information and explain well. and dont split this subchapter into more subchapters!!! and make sure to remember in which context you are writing this")
+def create_subchapter(doc, subchapter, experience,language):
+    content = askAI(f"Write the content for the subchapter: {subchapter} in {language} with appropriate language/complexity for {experience}. only use true information and use correct grammar")
 
-    # Split content into lines
+   
     lines = content.split("\n")
 
-    # Use the first line as subchapter title
+    
     subchapter_title = lines[0]
 
-    # Add subchapter title as a heading
+    
     doc.add_heading(subchapter_title, level=3)
 
-    # Add remaining lines as content paragraphs
+   
     for line in lines[1:]:
          doc.add_paragraph(line)
 
-def createBook(topic, experience):
-    getBookOutline(topic, experience)
+def createBook(topic, experience, language):
+    getBookOutline(topic, experience, language)
     
-    # Open the bookOutline.json file using a context manager to ensure it's properly closed
-    with open("util/bookOutline.json", 'r') as f:
+   
+    with open("util/bookOutline.json", 'r', encoding='utf-8') as f:
         data = json.load(f)
         x = 0
         
         bookTitle = data["BOOKTITLE"]
         sanitizedBookTitle = sanitize_filename(bookTitle)
-        
-        # Create a cover picture path
-        cover_picture_path = find_cover_picture("util")
-        
-        # Create a new Word document
+
+      
         doc = Document()
-        
-        print(cover_picture_path)
-        # Add cover picture if found
-        if cover_picture_path and is_supported_image(cover_picture_path):
-            doc.add_picture("util/" + cover_picture_path)  # Adjust width as needed
-        else:
-            print("Warning: Cover picture not found or unsupported format.")
-        
-        # Add book title as the main heading
-        doc.add_heading(bookTitle, level=1)
-        print(bookTitle)
-        
+
+      
+        doc.add_heading(unquote(bookTitle), level=1)
+
         for chapter in data['CHAPTERS']:
             x += 1
-            chapterTitle = str(x) + "." + chapter['CHAPTERTITLE']
             
-            # Add chapter title as a heading
+            chapterTitle = str(x) + "." + unquote(chapter['CHAPTERTITLE'])
+
+          
             doc.add_heading(chapterTitle, level=2)
-            print(chapterTitle)
-            
+
             threads = []
             for subchapter in chapter["SUBCHAPTERS"]:
-                thread = threading.Thread(target=create_subchapter, args=(doc, subchapter, experience))
+                thread = threading.Thread(target=create_subchapter, args=(doc, subchapter, experience, language))
                 threads.append(thread)
                 thread.start()
-            
-            # Wait for all threads to finish
+
+           
             for thread in threads:
                 thread.join()
 
-        # Save the Word document
-        doc.save(os.path.join(".", sanitizedBookTitle + ".docx"))  # Save in the current directory
+      
+        doc.save(os.path.join(".", sanitizedBookTitle + ".docx"))
 
 def run_gui():
     # Create the main window
@@ -161,28 +168,68 @@ def run_gui():
     experience_label.grid(row=0, column=0, sticky="w")
 
     # Create a variable to store the selected experience level
-    experience_var = tk.StringVar(window)
+    selected_experience = tk.StringVar(window)
 
     # Experience levels
-    experience_levels = ["Elementaryschool", "Middleschool", "Highschool", "University"]
+    experience_levels = ["Elementaryschool (grade 1-4)", "Middleschool(grade 5-8)", "Highschool(grade 9-12)", "University"]
 
     # Create radio buttons for experience levels
     for i, exp in enumerate(experience_levels):
-        rb = tk.Radiobutton(experience_frame, text=exp, variable=experience_var, value=exp)
+        rb = tk.Radiobutton(experience_frame, text=exp, variable=selected_experience, value=exp)
         rb.grid(row=i+1, column=0, sticky="w")
+
+    # Create a frame for language selection
+    language_frame = tk.Frame(window)
+    language_frame.pack(pady=10)
+
+    # Language label
+    language_label = tk.Label(language_frame, text="Select the language:")
+    language_label.grid(row=0, column=0, sticky="w")
+
+    # Create a variable to store the selected language
+    selected_language = tk.StringVar(window)
+
+    # Language buttons with corresponding flag images
+    languages = ["english", "german", "french", "spanish", "italian"]  # ISO 3166-1 alpha-2 country codes
+
+    # Flag colors for each language
+    flag_colors = {
+        "english": ["white", "red"],          # English flag: White with a red cross
+        "german": ["black", "red", "yellow"],# German flag: Black, red, yellow horizontal stripes
+        "french": ["blue", "white", "red"],  # French flag: Blue, white, red vertical stripes
+        "spanish": ["red", "yellow", "red"],  # Spanish flag: Red, yellow, red horizontal stripes
+        "italian": ["green", "white", "red"]  # Italian flag: Green, white, red vertical stripes
+    }
+
+     # Create language buttons with flags
+    for i, lang in enumerate(languages):
+        flag_colors_for_lang = flag_colors.get(lang)
+        if flag_colors_for_lang:
+            lang_btn = tk.Button(language_frame, text=lang.upper(), bg="white", command=lambda l=lang: selected_language.set(l))
+            lang_btn.grid(row=0, column=i+1, padx=5, pady=5)
+            canvas = tk.Canvas(language_frame, width=24, height=24)
+            canvas.grid(row=1, column=i+1)
+            if lang == "english":  # Draw English flag
+                draw_english_flag(canvas)
+            elif lang in ["german", "spanish"]:  
+                draw_flag_horizontal(canvas, 0, 0, flag_colors_for_lang)
+            else:
+                draw_flag_vertical(canvas, 0, 0, flag_colors_for_lang)
 
     def start_book_creation():
         topic = topic_entry.get()
-        selected_experience = experience_var.get()
-        if topic.strip() == "":
+        experience = selected_experience.get()
+        language = selected_language.get()
+        if not topic.strip():
             messagebox.showwarning("Warning", "Please enter a topic.")
-        elif selected_experience == "":
+        elif not experience:
             messagebox.showwarning("Warning", "Please select an experience level.")
+        elif not language:
+            messagebox.showwarning("Warning", "Please select a language.")
         else:
             # Start book creation process
-            createBook(topic, selected_experience)
-            messagebox.showinfo("Information", "Book creation completed successfully.")
-            window.destroy()
+            createBook(topic, experience, language)
+            messagebox.showinfo("Information", f"Book creation for '{topic}' at '{experience}' level in '{language.upper()} language.")
 
     # Start button
     start_button = tk.Button(window, text="Start Book Creation", command=start_book_creation)
@@ -190,6 +237,7 @@ def run_gui():
 
     # Run the GUI event loop
     window.mainloop()
+
 
 def main():
     gui_thread = threading.Thread(target=run_gui)
