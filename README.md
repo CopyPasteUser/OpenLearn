@@ -1,6 +1,6 @@
 # Student Learning Book Creator
 
-This Python script facilitates the creation of educational books aimed at students' learning needs. By leveraging AI assistance, the tool generates comprehensive Microsoft Word documents based on user-defined topics and students' educational backgrounds.
+This Python script facilitates the creation of educational books aimed at helping students study better and more efficiently. By leveraging AI assistance, the tool generates comprehensive Microsoft Word documents based on user-defined topics and students' educational backgrounds.
 
 ## Requirements
 
