@@ -23,10 +23,11 @@ Education is the cornerstone of progress and empowerment, yet access to quality 
 2. **Entering Book Details:**
    - Input the topic of the educational book in the designated field.
    - Select the appropriate student experience level from the available options (Elementary School, Middle School, High School, University).
+   - Choose the language of the book from the supported languages: English, German, French, Spanish, Italian.
 
 3. **Initiating Book Creation:**
    - Click the "Start Book Creation" button to commence the book generation process.
-   - The script employs AI assistance to craft the book's outline and content, tailored to the specified topic and students' educational levels.
+   - The script employs AI assistance to craft the book's outline and content, tailored to the specified topic, student educational level, and language.
    - Upon completion, a confirmation message will signify the successful creation of the book.
 
 4. **Output:**
@@ -36,13 +37,11 @@ Education is the cornerstone of progress and empowerment, yet access to quality 
 
 - **Online Hosting:** Explore the possibility of hosting the tool online to allow for easier access and collaboration among educators and learners worldwide.
 - **Audio Book Variant:** Integrate functionality to convert the generated books into audio formats, enhancing accessibility for visually impaired learners and those who prefer auditory learning.
-- **Multilanguage Support:** Implement support for multiple languages to cater to diverse linguistic communities and promote global accessibility.
+- **Multilanguage Support Expansion:** Aim to add support for additional languages in future updates, further catering to diverse linguistic communities and promoting global accessibility.
 
 ## Acknowledgements
 
 The development of the Student Learning Book Creator would not have been possible without the invaluable contributions of the open-source community. I am particularly grateful to the creators of GPT-4-Free by xtekky, another remarkable GitHub project. GPT-4-Free provides the AI assistance that powers this tool, enabling the generation of educational content tailored to students' needs. My sincere gratitude goes to the developers and contributors behind GPT-4-Free for their dedication to advancing AI technology and education accessibility.
-
-
 
 ## Future Possibilities
 
@@ -52,4 +51,3 @@ The Student Learning Book Creator is a dynamic project with boundless potential.
 - Advanced AI capabilities for personalized learning experiences tailored to individual student needs.
 
 We envision a future where education knows no boundaries, where every learner has access to high-quality educational resources that inspire, engage, and empower. Join us in this journey towards a brighter, more inclusive future for education worldwide.
-
