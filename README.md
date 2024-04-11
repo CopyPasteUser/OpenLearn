@@ -38,6 +38,12 @@ Education is the cornerstone of progress and empowerment, yet access to quality 
 - **Audio Book Variant:** Integrate functionality to convert the generated books into audio formats, enhancing accessibility for visually impaired learners and those who prefer auditory learning.
 - **Multilanguage Support:** Implement support for multiple languages to cater to diverse linguistic communities and promote global accessibility.
 
+## Acknowledgements
+
+The development of the Student Learning Book Creator would not have been possible without the invaluable contributions of the open-source community. I am particularly grateful to the creators of GPT-4-Free by xtekky, another remarkable GitHub project. GPT-4-Free provides the AI assistance that powers this tool, enabling the generation of educational content tailored to students' needs. My sincere gratitude goes to the developers and contributors behind GPT-4-Free for their dedication to advancing AI technology and education accessibility.
+
+
+
 ## Future Possibilities
 
 The Student Learning Book Creator is a dynamic project with boundless potential. Here are some future directions and possibilities:
