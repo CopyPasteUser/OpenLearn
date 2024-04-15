@@ -1,23 +1,24 @@
 body{
-    background-color: hsla(120, 100%, 25%, 0.531);
+    
     overflow: auto; /* Hide vertical scrollbar */
-    background-color: hsla(120, 100%, 25%, 0.531);
+    background-color:hsl(60, 40%, 73%);
     margin: 0;
     padding: 0;
+    
 }
 
 /************HEADER*************/
 
 .container {
     
-    background-color: beige;
-    border: 5px solid rgb(161, 161, 118);
+    background-color:hsl(60, 40%, 73%);
     border-radius: 10px;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1%;
+    overflow: hidden;
 }
 
 #OpenLib {
@@ -27,6 +28,7 @@ body{
     font-size: 2.2em;
     margin: 0;
     order: 1;
+    cursor: pointer;
 }
 
 .headerNav {
@@ -39,9 +41,9 @@ body{
 .headerNav a {
     color: black;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.5em;
-    margin-left: 25px; /* Adjust as needed */
+    font-size: 1.75em;
+    margin-left: 85px; /* Adjust as needed */
+    padding-right: 10px;
     flex-grow: 2; /* Allow links to grow and shrink */
     flex-shrink: 2;
 }
@@ -72,12 +74,15 @@ body{
     justify-content:center;
     align-items: flex-start; /* Align items to the top */
     padding-bottom: 10px;
+    margin-left: 10px ;
     padding-left: 2px;
     margin-bottom: 2px;
     position: relative; /* Add relative positioning */
     right: 10;
     top: 10;
     animation: jump 1.5s ease-in-out infinite; /* Apply the animation */
+    cursor: grab; 
+    
     
 }
 
@@ -113,21 +118,23 @@ body{
 /**********FOOOTER**********************/
 
 footer {
-    background-color: beige;
-    border: 5px solid rgb(161, 161, 118);
+    background-color: hsl(60, 40%, 73%);
+    border: 5px solid hsl(60, 40%, 73%);
     border-radius: 10px;
-    padding: 10px;
     display: flex;
+    flex: wrap;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    
-
+    position: absolute;
+    bottom: -500;
+    left: 0;
+    right: 0;
 }
 
 
+
 #copyright {
-    background-color: hsla(280, 2%, 32%, 0.031);
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -240,14 +247,14 @@ footer {
     background-color:  hsl(2, 62%, 50%);
     display: flex;
     justify-content: center;
-    position: relative; /* Change to relative position */
+    position: absolute; /* Change to relative position */
     left: 50%;
     height: 350px;
     width: 600px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow */
-    transform: translate(-400px, -20px) scale(0.8); /* Verschiebe das Element um 100 Pixel nach rechts und 50 Pixel nach unten und skaliere es um das 1,5-fache */
-
+    transform: translate(-530px,30%) scale(0.75); /* Verschiebe das Element um 100 Pixel nach rechts und 50 Pixel nach unten und skaliere es um das 1,5-fache */
+    
     
 }
 
@@ -428,20 +435,71 @@ footer {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 5px;
+    width: 3px;
     height: 100%;
-    background-color: black;
+    background-color: hsla(60, 5%, 56%, 0.818);
     z-index: -1; /* Ensure the line appears beneath the shadow */
+    box-shadow: 8px 0 6px rgba(0, 0, 0, 0.35), -8px 0 6px rgba(0, 0, 0, 0.35); /* Add shadows on both sides */
 }
 
 
 
+/***************MAIN-INDEX************************/
+
+.main{
+    position: relative;
+}
+
+.infotab {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: start;
+    align-items: space-between; /* Center items horizontally */
+    position: absolute;
+    border-radius: 15px;
+    background-color: hsl(46, 66%, 72%);
+    width: 55%;
+    height: 75%;
+    transform: translate(50px, 50px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.486); /* Add shadow */
+    font-style: normal;
+    font-weight: normal;
+    transform: translateX(75%);
+    
+}
+
+.infotab p{
+    font-style: serif;
+}
 
 
 
+#bib{
+    position: absolute;
+    border-radius: 25px ;
+    top: 50%;
+    right: 0;
+    transform: translate(0px,-45%);
+    width: 60%;
+    height: 85%;
+}
 
+#choosetopic{
+    align-items: center;
+    position: absolute;
+    bottom: -500;
+    translate: -120%;
+}
 
+#settings{
+    align-items: center;
+    position: absolute;
+    bottom: -500;
+}
 
-
-
-/**********************************************/
+#result{
+    align-items: center;
+    position: absolute;
+    bottom:-500;
+    translate: 120%;
+}
