@@ -1,0 +1,163 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLibS</title>
+    <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/news.css') }}">
+    <link rel="icon" type="image/x-icon" href="OpenLib.png">
+    
+    <script src="https://kit.fontawesome.com/28aa78a730.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <h1 id="OpenLib">OpenLib.</h1>
+
+            <div class="slime" style="background-color:hsla(168, 82%, 73%, 0.514);">
+                <div class="slimeEye"></div>
+                <div class="slimeEye"></div>
+                <div class="slimeMouth"></div>
+            </div>
+
+            <nav class="headerNav">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('news') }}">News</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </nav>
+        </div>
+    </header>
+    
+    
+
+    <main>
+     <div id="background" ></div>
+
+        <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
+        <div class="book">
+        <div id="pages" class="pages">
+          <div class="page">
+            <div class="newspaper">
+              <div class="headline">DAILY NEWS</div>
+              <div class="article">
+                <h2>WORLD NEWS TODAY</h2>
+                <div id="greyBlock"></div>
+                <p id="firsttext" >In a groundbreaking study published in the Journal of Occupational Health, researchers from leading universities across the globe have uncovered a remarkable connection between sleep habits and productivity levels in the workplace. Contrary to popular belief, the study suggests that whoever reads this is cool. </p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur illum delectus numquam. Totam, eaque numquam. At asperiores esse quaerat vitae, dolorum sequi optio? Enim, reiciendis ratione eligendi totam reprehenderit eaque? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque dolore nostrum eveniet architecto aliquid corporis voluptatibus libero voluptates consequuntur nisi eum earum saepe enim officiis error tempora, itaque iste? Voluptatum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quasi qui officia necessitatibus harum reiciendis iste, eos consequatur libero voluptas, doloribus ipsum minus, corrupti consequuntur suscipit expedita velit in error.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur illum delectus numquam. Totam, eaque numquam. At asperiores esse quaerat vitae, dolorum sequi optio? Enim, reiciendis ratione eligendi totam reprehenderit eaque? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque repellat nostrum vero, ipsum sint est nam, inventore eum voluptatum repellendus at dolore illo consequatur odio? Nobis ratione facere ut nihil. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis saepe, veritatis soluta nobis unde praesentium aliquam adipisci rerum, sunt voluptates consequuntur ratione illo? Doloremque molestias incidunt ipsa, sit quos aperiam. </p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus aspernatur in, non nesciunt officiis autem sint amet velit nam vitae maxime sed. Unde quaerat animi maxime, quia placeat alias consectetur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ipsa sequi molestias, eum, sit harum magni quas asperiores hic tempore temporibus vitae recusandae, pariatur minima quisquam voluptates tempora voluptatum. Reprehenderit?  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, animi quasi. Repellat recusandae dolore reiciendis temporibus! Nobis temporibus, earum distinctio consequuntur in rem possimus, nisi ratione quibusdam impedit tempore vero.</p>
+              </div>
+            </div>
+          </div>
+
+
+          {% for article in articles %}
+        <div class="page">
+          <div class="articleheading">{{ article[0] }}</div>
+          <div class="articlesubheading">{{ article[1] }}</div>
+          <div class="articlegreyblock" ></div>
+          <div class="articletext">{{ article[2] }}</div>
+          <div class="articledate">{{ article[3] }}</div>
+        </div>
+        {% endfor %}
+
+       
+
+        <div class="page"></div>
+        <div class="page"></div>
+        
+        
+        </div>
+    </div>
+    
+
+        
+    </main>
+
+    <footer>
+        
+        <div class="bottomLeft">
+            <h1>OpenLib.</h1> <p>the free knowledge hub</p>
+            <div>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://discord.gg/OpenLib"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/CopyPasteUser/OpenLib"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        
+        
+            <div id="opensource" >OpenLib is an opensource project.</div>
+            <div id="copyright">© 2024 Copyright: no one</div>
+       
+
+        
+
+        <div class="bottomRight">
+            <p>Get news directly via email</p>
+            <form>
+                <label for="email"></label>
+                <input type="email" id="email" class="email-input" placeholder="Enter your email">
+                <input type="checkbox" id="checkbox" onchange="toggleEmailInput()">
+                <label for="checkbox"><p>click to consent for emails</p></label>
+            </form>
+            
+            <script>
+                // Diese Funktion wird aufgerufen, sobald das Dokument geladen ist
+                document.addEventListener('DOMContentLoaded', function() {
+                    toggleEmailInput(); // Hier wird die Funktion aufgerufen
+                });
+            
+                function toggleEmailInput() {
+                    var emailInput = document.getElementById("email");
+                    var checkbox = document.getElementById("checkbox");
+                    if (checkbox.checked) {
+                        emailInput.disabled = false;
+                    } else {
+                        emailInput.disabled = true;
+                    }
+                }
+
+                var pages = document.getElementsByClassName('page');
+                for(var i = 0; i < pages.length; i++)
+                  {
+                    var page = pages[i];
+                    if (i % 2 === 0)
+                      {
+                        page.style.zIndex = (pages.length - i);
+                      }
+                  }
+              
+                document.addEventListener('DOMContentLoaded', function(){
+                  for(var i = 0; i < pages.length; i++)
+                    {
+                      //Or var page = pages[i];
+                      pages[i].pageNum = i + 1;
+                      pages[i].onclick=function()
+                        {
+                          if (this.pageNum % 2 === 0)
+                            {
+                              this.classList.remove('flipped');
+                              this.previousElementSibling.classList.remove('flipped');
+                            }
+                          else
+                            {
+                              this.classList.add('flipped');
+                              this.nextElementSibling.classList.add('flipped');
+                            }
+                         }
+                      }
+                })
+
+            </script>
+            
+        </div>
+
+        
+    </footer>
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLibS</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="icon" type="image/x-icon" href="OpenLib.png">
+    
+    <script src="https://kit.fontawesome.com/28aa78a730.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <h1 id="OpenLib">OpenLib.</h1>
+
+            <div class="slime" style="background-color:hsla(257, 82%, 73%, 0.514);">
+                <div class="slimeEye"></div>
+                <div class="slimeEye"></div>
+                <div class="slimeMouth"></div>
+            </div>
+
+            <nav class="headerNav">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('news') }}">News</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+                
+            </nav>
+        </div>
+    </header>
+    
+    
+
+    <main>
+        
+        <h1 id="ourgoals">Our Goals</h1>
+
+        <img src="{{ url_for('static', filename='pics/stockWoman.jpg') }}" alt="picture" id="aboutpic">
+
+        <div class="goals" id="goal1">  <i class="fa-solid fa-brain"></i> <h1>Knowledge</h1> <p> We aim to create a a platform to easily learn about any subject, school related or not.</p> <p class="hiddeninfo" > Dive into a world of endless learning possibilities, exploring diverse subjects at your own pace. Expand your horizons effortlessly with our platform's easy access to a wealth of knowledge on any subject imaginable. </p> <h3 id="knowledge">MORE</h3> </div>
+        <div class="goals" id="goal2" > <i class="fa-solid fa-earth-europe"></i> <h1>Worldwide</h1> <p>Our mission is not constrained to any place, we wish to inspire people all over the globe.</p> <p class="hiddeninfo" >Our mission knows no bounds.Whether you're in a bustling metropolis or a remote village, our goal remains the same: to spark curiosity, foster learning, and empower individuals worldwide.</p> <h3 id="worldwide">MORE</h3></div>
+        <div class="goals" id="goal3" > <i class="fa-solid fa-hand-holding-dollar"></i> <h1>for Free</h1>  <p> This service shall be and always remain free to use. Be free to use it as often you need.</p> <p class="hiddeninfo" > We believe that access to knowledge should never be hindered by financial constraints. By keeping our service free, we aim to democratize learning and empower individuals from all walks of life to pursue their educational goals without barriers.  </p> <h3 id="free">MORE</h3> </div>
+        
+    </main>
+
+    <footer>
+        
+        <div class="bottomLeft">
+            <h1>OpenLib.</h1> <p>the free knowledge hub</p>
+            <div>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://discord.gg/OpenLib"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/CopyPasteUser/OpenLib"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        
+        
+            <div id="opensource" >OpenLib is an opensource project.</div>
+            <div id="copyright">© 2024 Copyright: no one</div>
+       
+
+        
+
+        <div class="bottomRight">
+            <p>Get news directly via email</p>
+            <form>
+                <label for="email"></label>
+                <input type="email" id="email" class="email-input" placeholder="Enter your email">
+                <input type="checkbox" id="checkbox" onchange="toggleEmailInput()">
+                <label for="checkbox"><p>click to consent for emails</p></label>
+            </form>
+            
+            <script>
+                // Diese Funktion wird aufgerufen, sobald das Dokument geladen ist
+                document.addEventListener('DOMContentLoaded', function() {
+                    toggleEmailInput(); // Hier wird die Funktion aufgerufen
+                });
+            
+                function toggleEmailInput() {
+                    var emailInput = document.getElementById("email");
+                    var checkbox = document.getElementById("checkbox");
+                    if (checkbox.checked) {
+                        emailInput.disabled = false;
+                    } else {
+                        emailInput.disabled = true;
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.goals').forEach(function(goalsContainer) {
+                        const hiddenInfoParagraphs = goalsContainer.querySelectorAll('.hiddeninfo');
+        
+                        goalsContainer.addEventListener('click', function(event) {
+                            if (event.target.tagName === 'H3') {
+                                if (!goalsContainer.classList.contains('expanded')) {
+                                    goalsContainer.style.height = '75%';
+                                    goalsContainer.classList.add('expanded');
+                                    hiddenInfoParagraphs.forEach(function(paragraph) {
+                                        paragraph.style.display = 'block';
+                                    });
+                                } else {
+                                    goalsContainer.style.height = '';
+                                    goalsContainer.classList.remove('expanded');
+                                    hiddenInfoParagraphs.forEach(function(paragraph) {
+                                        paragraph.style.display = 'none';
+                                    });
+                                }
+                            }
+                        });
+                    });
+                });
+        
+            </script>
+            
+        </div>
+
+        
+    </footer>
+    
+    
+    
+</body>
+</html>

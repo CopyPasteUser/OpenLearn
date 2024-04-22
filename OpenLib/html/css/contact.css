@@ -1,0 +1,350 @@
+
+body{
+    
+    overflow: auto; /* Hide vertical scrollbar */
+    background-color:hsl(60, 40%, 73%);
+    margin: 0;
+    padding: 0;
+    
+}
+
+/************HEADER*************/
+
+.container {
+    
+    background-color:hsl(60, 31%, 67%);
+    border-radius: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    overflow: hidden;
+}
+
+#OpenLib {
+    
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 2.2em;
+    margin: 0;
+    order: 1;
+    cursor: pointer;
+}
+
+.headerNav {
+    display: flex;
+    order: 2;
+    margin-left: auto;
+    
+}
+
+.headerNav a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.75em;
+    margin-left: 85px; /* Adjust as needed */
+    padding-right: 10px;
+    flex-grow: 2; /* Allow links to grow and shrink */
+    flex-shrink: 2;
+}
+
+
+.headerNav a:first-child {
+    margin-left: 0;
+}
+
+.headerNav a:hover{
+    background-color:  hsla(60, 52%, 60%, 0.692);
+    transform: scale(1.1);
+    border-radius: 5px;
+}
+
+.headerNav a:active{
+    transform: scale(1.2);
+}
+
+/************SLIME**********************/ 
+
+.slime {
+    
+    border: 5px solid hsla(112, 81%, 40%, 0.038);
+    height: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content:center;
+    align-items: flex-start; /* Align items to the top */
+    padding-bottom: 10px;
+    margin-left: 10px ;
+    padding-left: 2px;
+    margin-bottom: 2px;
+    position: relative; /* Add relative positioning */
+    right: 10;
+    top: 10;
+    animation: jump 1.5s ease-in-out infinite; /* Apply the animation */
+    cursor: grab; 
+    
+    
+}
+
+
+
+.slimeEye {
+    background-color: rgb(0, 0, 0);
+    border: 5px solid rgba(56, 56, 56, 0.476);
+    border-radius: 3px;
+    margin: 5px;
+}
+
+@keyframes jump {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-20px) scaleX(0.9); }
+    50% { transform: translateY(0) scaleY(0.9); }
+    75% { transform: translateY(5px) scaleY(0.9) scaleX(1.1); }
+    100% { transform: translateY(0) ; }
+}
+
+.slimeMouth {
+    width: 15px; 
+    height: 3px; 
+    background-color: rgb(0, 0, 0);
+    border-top-color: transparent;
+    position: absolute;
+    bottom: 5;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slime:active{
+    scale: 1.2;
+}
+
+
+/**********FOOOTER**********************/
+
+footer {
+    background-color: hsl(60, 40%, 73%);
+    border: 5px solid hsl(60, 40%, 73%);
+    border-radius: 10px;
+    display: flex;
+    flex: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: -500;
+    left: 0;
+    right: 0;
+}
+
+
+
+#copyright {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#opensource {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+  
+    
+
+
+.bottomLeft {
+   display: inline-block;
+   justify-content: space-between;
+   
+}
+
+.bottomLeft h1 {
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 2.2em;
+    display: inline;
+}
+
+.bottomLeft p {
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 1.0em;
+    display: inline;
+}
+
+.bottomLeft div {
+    margin-bottom: 10px;
+}
+
+.bottomRight form {
+    margin-top: 10px;
+}
+
+.bottomRight input[type="email"] {
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    margin-right: 10px;
+}
+
+.bottomRight input[type="checkbox"] {
+    margin-right: 5px;
+
+}
+
+.bottomRight p{
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 1.0em;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.bottomRight span {
+    font-weight: bold;
+}
+
+.fab {
+    font-size: 3em;
+    margin-right: 10px;
+    margin-top: 5px;
+    transition: transform 0.2s ease; /* Add transition for transform property */
+    
+}
+
+.fab.fa-instagram {
+    color: rgba(128, 0, 128, 0.795);
+}
+
+.fab.fa-twitter {
+    color: hsla(195, 53%, 79%, 0.791);
+}
+
+.fab.fa-discord {
+    color: hsla(240, 100%, 50%, 0.795);
+}
+
+.fab.fa-github {
+    color: hsla(0, 0%, 0%, 0.795);
+}
+
+.fab:hover {
+    color: hsla(298, 79%, 77%, 0.836);
+    transform: scale(1.3); /* Scale the icons slightly when hovered */
+}
+
+
+
+/************MAIN-CONTACT******************/
+
+
+.aboutbar {
+    display: flex;
+    justify-content: center;
+    background-color: hsla(69, 82%, 73%, 0.808);
+    position: relative;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    height: 75%;
+    align-items: flex-start; /* Symbole oben ausrichten */
+}
+
+.abouttab {
+    display: flex;
+    background-color: white;
+    transform: translate(21%);
+    margin-top: 5%;
+    width: 40%;
+    height: 70%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px hsla(0, 0%, 50%, 0.623);
+}
+
+#contacttab {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    
+    border-radius: 5px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+  
+  #logopic {
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.verticalColumn {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 7.5%;
+    top: 10%;
+}
+
+.verticalColumn > div {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    margin-bottom: 25%; /* Adjust spacing between items */
+}
+
+.verticalColumn > div > i {
+    margin-right: 25%; /* Adjust spacing between symbol and text */
+    transform: translateY(5%);
+    font-size: 2em;
+    
+}
+
+.verticalColumn > div > span {
+    font-size: 1.45em;
+    font-weight: bolder;
+    white-space: nowrap; 
+}
+
+#availableHours{
+    transform: translateX(-25%)
+}
+
+#hourtable{
+    transform: translate(-120%,125%);
+}
+
+.verticalColumn > div > p {
+    transform: translate(-75%,125%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    white-space: nowrap; 
+    text-decoration: none;
+    color: rgb(106, 106, 106);
+    font-size: 1.2em;
+}
+
+
+.verticalColumn > div > a {
+    transform: translate(-75%,125%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    white-space: nowrap; 
+    text-decoration: none;
+    color: rgb(106, 106, 106);
+    font-size: 1.2em;
+}
+/***********MAIN-CONTACT**************/

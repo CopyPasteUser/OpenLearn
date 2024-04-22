@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLibS</title>
+    <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/contact.css') }}">
+    <link rel="icon" type="image/x-icon" href="OpenLib.png">
+    
+    <script src="https://kit.fontawesome.com/28aa78a730.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <h1 id="OpenLib">OpenLib.</h1>
+
+            <div class="slime" style="background-color:hsla(69, 82%, 73%, 0.514);">
+                <div class="slimeEye"></div>
+                <div class="slimeEye"></div>
+                <div class="slimeMouth"></div>
+            </div>
+
+            <nav class="headerNav">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('news') }}">News</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+
+            </nav>
+        </div>
+    </header>
+    
+    
+
+    <main>
+
+        <div class="aboutbar">
+            <div class="verticalColumn">
+                <div>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Location</span>
+                    <a href="https://github.com/CopyPasteUser/OpenLib">OpenLib on Github  <i class="fab fa-github" style="font-size: 1em;"></i></a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Email</span>
+                    <p> OpenLib@gmail.com</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-clock"></i>
+                    <span id="availableHours" >available Hours</span>
+                    <p id="hourtable" >Mon-Fri 10am - 6pm</p>
+                </div>
+            </div>
+            <div class="abouttab">
+                <div id="contacttab">
+                    <img src="{{ url_for('static', filename='pics/OpenLib.png') }}" alt="logo picture" id="logopic">
+              </div>
+        </div>
+        
+        
+        
+
+        
+    </main>
+
+    <footer>
+        
+        <div class="bottomLeft">
+            <h1>OpenLib.</h1> <p>the free knowledge hub</p>
+            <div>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://discord.gg/OpenLib"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/CopyPasteUser/OpenLib"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        
+        
+            <div id="opensource" >OpenLib is an opensource project.</div>
+            <div id="copyright">© 2024 Copyright: no one</div>
+       
+
+        
+
+        <div class="bottomRight">
+            <p>Get news directly via email</p>
+            <form>
+                <label for="email"></label>
+                <input type="email" id="email" class="email-input" placeholder="Enter your email">
+                <input type="checkbox" id="checkbox" onchange="toggleEmailInput()">
+                <label for="checkbox"><p>click to consent for emails</p></label>
+            </form>
+            
+            <script>
+                // Diese Funktion wird aufgerufen, sobald das Dokument geladen ist
+                document.addEventListener('DOMContentLoaded', function() {
+                    toggleEmailInput(); // Hier wird die Funktion aufgerufen
+                });
+            
+                function toggleEmailInput() {
+                    var emailInput = document.getElementById("email");
+                    var checkbox = document.getElementById("checkbox");
+                    if (checkbox.checked) {
+                        emailInput.disabled = false;
+                    } else {
+                        emailInput.disabled = true;
+                    }
+                }
+                
+                
+                
+
+            </script>
+            
+        </div>
+
+        
+    </footer>
+    
+    
+    
+</body>
+</html>

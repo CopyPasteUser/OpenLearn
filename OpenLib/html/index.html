@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLibS</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+
+
+    
+    
+    <script src="https://kit.fontawesome.com/28aa78a730.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <h1 id="OpenLib">OpenLib. </h1>
+
+            <div class="slime" style="background-color: hsla(2, 82%, 73%, 0.514);">
+                <div class="slimeEye"></div>
+                <div class="slimeEye"></div>
+                <div class="slimeMouth"></div>
+            </div>
+
+            <nav class="headerNav">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('news') }}">News</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+
+            </nav>
+        </div>
+    </header>
+    
+    
+
+    <main>
+        
+        <img src="{{ url_for('static', filename='pics/lib.jpg') }}" alt="image of library" id="bib">
+
+        
+       <div id="bookshell">
+        <div class="innerbook">
+            <h1 id="booktopic" >choose topic</h1>
+            <input type="text" placeholder="book topic" id="topicpicker">
+            <h1 id="education" >education stage </h1>
+            <h1 id="language">choose language</h1>
+
+            <button id="create-book-btn">Create Book</button>
+
+            <div id="languagepicker">
+                <select name="languages" id="language-select">
+                    <option value="english">English</option>
+                    <option value="german">German</option>
+                    <option value="french">French</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="italian">Italian</option>
+                </select>
+            </div>
+
+            <form class="radio-toolbar">
+                <input type="radio" id="primaryschool" name="schoolType" value="primaryschool">
+                <label for="primaryschool">Primary School</label>
+              
+                <input type="radio" id="middleschool" name="schoolType" value="middleschool">
+                <label for="middleschool">Middle School</label>
+              
+                <input type="radio" id="highschool" name="schoolType" value="highschool">
+                <label for="highschool">High School</label>
+              
+                <input type="radio" id="university" name="schoolType" value="university">
+                <label for="university">University</label>
+              </form>
+            <div>
+                
+        </div>
+        
+       </div>
+
+       <div class="infotab" id="choosetopic">
+            <h1 >topic</h1>
+            <p>choose your topic in detail</p>
+        </div>
+
+        <div class="infotab" id="settings">
+            <h1 >settings</h1>
+            <p>choose your language <br> and education level</p>
+        </div>
+
+        <div class="infotab" id="result">
+            <h1 >result</h1>
+            <p>click on create book <br> </p>
+        </div>
+
+    </main>
+
+    <footer>
+        
+        <div class="bottomLeft">
+            <h1>OpenLib.</h1> <p>the free knowledge hub</p>
+            <div>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://discord.gg/OpenLib"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/CopyPasteUser/OpenLib"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        
+        
+            <div id="opensource" >OpenLib is an opensource project.</div>
+            <div id="copyright">© 2024 Copyright: no one</div>
+       
+
+        
+
+        <div class="bottomRight">
+            <p>Get news directly via email</p>
+            <form>
+                <label for="email"></label>
+                <input type="email" id="email" class="email-input" placeholder="Enter your email">
+                <input type="checkbox" id="checkbox" onchange="toggleEmailInput()">
+                <label for="checkbox"><p>click to consent for emails</p></label>
+            </form>
+            
+            <script>
+                // Diese Funktion wird aufgerufen, sobald das Dokument geladen ist
+                document.addEventListener('DOMContentLoaded', function() {
+                    toggleEmailInput(); // Hier wird die Funktion aufgerufen
+                });
+            
+                function toggleEmailInput() {
+                    var emailInput = document.getElementById("email");
+                    var checkbox = document.getElementById("checkbox");
+                    if (checkbox.checked) {
+                        emailInput.disabled = false;
+                    } else {
+                        emailInput.disabled = true;
+                    }
+                }
+
+            </script>
+            
+        </div>
+
+        
+    </footer>
+    
+    
+    
+</body>
+</html>
