@@ -1,6 +1,6 @@
 # OpenLib (Open Library) - Student Learning Book Creator
 
-![OpenLib Logo](OpenLib/OpenLib.png)
+![OpenLib Logo](OpenLib/hrml/pics/OpenLib.png)
 *(Provisional Logo)*
 
 The OpenLib (Open Library) is a Python script designed to empower educators and learners worldwide by facilitating the creation of educational materials tailored to diverse student needs. Whether you're a teacher crafting resources for your classroom or an individual passionate about sharing knowledge, this tool aims to assist you in creating engaging and effective learning materials.
