@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <title>OpenLibS</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
 
@@ -39,7 +39,7 @@
         <img src="{{ url_for('static', filename='pics/lib.jpg') }}" alt="image of library" id="bib">
 
         
-       <div id="bookshell">
+        <div id="bookshell">
         <div class="innerbook">
             <h1 id="booktopic" >choose topic</h1>
             <input type="text" placeholder="book topic" id="topicpicker">
@@ -58,17 +58,18 @@
                 </select>
             </div>
 
+
             <form class="radio-toolbar">
-                <input type="radio" id="primaryschool" name="schoolType" value="primaryschool">
+                <input type="radio" id="primaryschool" name="schoolType" value="Elementaryschool (grade 1-4)">
                 <label for="primaryschool">Primary School</label>
               
-                <input type="radio" id="middleschool" name="schoolType" value="middleschool">
+                <input type="radio" id="middleschool" name="schoolType" value="Middleschool(grade 5-8)">
                 <label for="middleschool">Middle School</label>
               
-                <input type="radio" id="highschool" name="schoolType" value="highschool">
+                <input type="radio" id="highschool" name="schoolType" value="Highschool(grade 9-12)">
                 <label for="highschool">High School</label>
               
-                <input type="radio" id="university" name="schoolType" value="university">
+                <input type="radio" id="university" name="schoolType" value="University">
                 <label for="university">University</label>
               </form>
             <div>
@@ -77,7 +78,7 @@
         
        </div>
 
-       <div class="infotab" id="choosetopic">
+        <div class="infotab" id="choosetopic">
             <h1 >topic</h1>
             <p>choose your topic in detail</p>
         </div>
@@ -137,6 +138,16 @@
                         emailInput.disabled = true;
                     }
                 }
+
+                document.getElementById('create-book-btn').addEventListener('click', function() {
+                    var topic = document.getElementById('topicpicker').value;
+                    var language = document.getElementById('language-select').value;
+                    var education = document.querySelector('input[name="schoolType"]:checked').value;
+            
+                    // Send a GET request to Flask endpoint
+                    var url = `/generate/${topic}/${education}/${language}`;
+                    window.location.href = url;
+                });
 
             </script>
             
